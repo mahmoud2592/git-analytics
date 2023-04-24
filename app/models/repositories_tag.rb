@@ -1,0 +1,2 @@
+class RepositoriesTag < ApplicationRecord
+end
