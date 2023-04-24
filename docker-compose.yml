@@ -1,28 +1,49 @@
-version: '3'
-
+version: "3.9"
 services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: git_analytics_development
+    ports:
+      - "5432:5432"
   web:
     build: .
+    volumes:
+      - .:/myapp
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: git_analytics_development
+      POSTGRESS_HOST: db
+      POSTGRESS_PORT: '5432'
     ports:
       - "3000:3000"
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgresql://postgres@db/git_analytics_development
-      REDIS_URL: redis://localhost:6379/0
-      RAILS_ENV: development
-  db:
-    image: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: git_analytics_development
-    volumes:
-      - postgres:/var/lib/postgresql/data
+      - migration
+    command: ["rails", "server", "-b", "0.0.0.0"]
   redis:
     image: redis
     volumes:
       - redis:/data
+
+  migration:
+    build: .
+    volumes:
+      - .:/myapp
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: git_analytics_development
+      POSTGRESS_HOST: db
+      POSTGRESS_PORT: '5432'
+    command: ["rails", "db:migrate"]
+    depends_on:
+      - db
 volumes:
   postgres:
   redis:
