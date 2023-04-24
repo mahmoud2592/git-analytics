@@ -30,11 +30,12 @@ gem 'active_model_serializers', '~> 0.10'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', require: 'rack/cors'
 
-group :development do
+# group :development do
   gem 'bullet'
-end
+  gem 'rubocop', require: false
+# end
 
-group :development, :test do
+# group :development, :test do
   # Use RSpec for testing
   gem 'rspec-rails', '~> 5.0'
     # Use factory_bot_rails for generating test data
@@ -46,9 +47,8 @@ group :development, :test do
   gem 'rails-controller-testing'
 
   gem "rswag", '~> 2.8.0'
-
-  gem 'rubocop', require: false
-end
+  gem "rswag-specs"
+# end
 # Use rails-i18n for internationalization support
 gem 'rails-i18n'
 

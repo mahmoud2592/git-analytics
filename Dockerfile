@@ -1,18 +1,12 @@
-# Base image
+# Base image:
 FROM ruby:3.1.1
 
-# Set working directory
-WORKDIR /app
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
-# Install dependencies
-RUN apt-get update && apt-get install -y nodejs postgresql-client
+WORKDIR /myapp
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN bundle config set without 'development test' && \
+        bundle install
 
-# Install gems
-COPY Gemfile Gemfile.lock ./
-RUN bundle install
-
-# Copy application code
-COPY . .
-
-# Start the application
-CMD ["rails", "server", "-b", "0.0.0.0"]
+COPY Gemfile /myapp/Gemfile
