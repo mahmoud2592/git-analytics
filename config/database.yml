@@ -1,0 +1,37 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  host: db
+  database: git_analytics_development
+  username: postgres
+  password: password
+  url: postgresql://postgres@db/git_analytics_development
+  cache_store: redis_cache_store
+  redis_cache_store:
+    url: redis://localhost:6379/0
+
+test:
+  <<: *default
+  host: db
+  database: git_analytics_test
+  username: postgres
+  password: password
+  url: postgresql://postgres@db/git_analytics_test
+  cache_store: redis_cache_store
+  redis_cache_store:
+    url: redis://localhost:6379/0
+
+production:
+  <<: *default
+  host: db
+  database: git_analytics_production
+  username: postgres
+  password: password
+  url: postgresql://postgres@db/git_analytics_production
+  cache_store: redis_cache_store
+  redis_cache_store:
+    url: redis://mahmoud:(mahmoud)@git_analytics:6379/0
