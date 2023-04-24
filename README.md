@@ -39,3 +39,20 @@ rails generate scaffold Analytics user_id:integer repository_id:integer search_i
 rails generate scaffold Feedback user_id:integer category:string message:text
 rails generate scaffold RepositoriesTags repository_id:integer tag_id:integer
 rails g scaffold Commits sha:string author_name:string author_email:string message:text committed_date:datetime repository_id:integer day:datetime week:datetime month:datetime
+
+
+rails generate scaffold Repository name:string description:text language:string stars_count:integer forks_count:integer url:string
+rails generate scaffold User username:string name:string email:string location:string bio:text url:string
+rails generate scaffold Commit message:text author:string timestamp:datetime url:string repository:references
+rails generate scaffold Issue title:string description:text author:string assignee:string status:string labels:text timestamp:datetime url:string repository:references
+rails generate scaffold PullRequest title:string description:text author:string assignee:string status:string labels:text timestamp:datetime url:string repository:references
+rails generate scaffold Label name:string color:string description:text url:string repository:references
+rails generate scaffold Milestone title:string description:text due_date:date status:string url:string repository:references
+rails generate scaffold Contributor username:string profile_link:string contributions_count:integer url:string repository:references
+rails generate scaffold Branch name:string last_commit:string url:string repository:references
+rails generate scaffold Release tag_name:string target_commitish:string name:string body:text url:string repository:references
+rails generate scaffold Fork forked_from_repository:references forked_to_repository:references
+rails generate scaffold Watcher repository:references user:references
+rails generate scaffold Collaborator username:string permission:string repository:references
+rails generate scaffold OrganizationMember organization:references username:string url:string
+rails generate scaffold OrganizationTeam name:string description:text permission:string url:string organization:references
