@@ -1,0 +1,37 @@
+<%= form_with(model: users_repository) do |form| %>
+  <% if users_repository.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(users_repository.errors.count, "error") %> prohibited this users_repository from being saved:</h2>
+
+      <ul>
+        <% users_repository.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :repository_id, style: "display: block" %>
+    <%= form.number_field :repository_id %>
+  </div>
+
+  <div>
+    <%= form.label :date_added, style: "display: block" %>
+    <%= form.date_field :date_added %>
+  </div>
+
+  <div>
+    <%= form.label :last_viewed, style: "display: block" %>
+    <%= form.date_field :last_viewed %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

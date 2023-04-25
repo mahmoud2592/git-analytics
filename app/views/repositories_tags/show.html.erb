@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @repositories_tag %>
+
+<div>
+  <%= link_to "Edit this repositories tag", edit_repositories_tag_path(@repositories_tag) %> |
+  <%= link_to "Back to repositories tags", repositories_tags_path %>
+
+  <%= button_to "Destroy this repositories tag", @repositories_tag, method: :delete %>
+</div>
