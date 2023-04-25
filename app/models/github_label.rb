@@ -1,6 +1,6 @@
 class GithubLabel < ApplicationRecord
   # Associations
-  belongs_to :repository
+  # TO-DO
 
   # Validations
   validates :name, :color, :url, presence: true
@@ -14,13 +14,7 @@ class GithubLabel < ApplicationRecord
   scope :by_color, ->(color) { where(color: color) }
 
   # Methods
-  def self.fetch_and_create(repo_name)
-    # TODO: Implement a method to fetch data from the GitHub API and create GithubLabel records
-  end
-
-  private
-
-  def set_url
-    self.url = "https://github.com/#{repository.full_name}/labels/#{name.parameterize}"
+  def self.from_github_api(api_response, api_strategy = GithubApiStrategy.new(GithubApi.new))
+    # api_strategy.fetch_repository_data(api_response)
   end
 end

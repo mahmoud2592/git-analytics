@@ -1,18 +1,6 @@
-require 'net/http'
-require 'json'
-
 class GithubRepository < ApplicationRecord
   # Associations
-  has_many :branches, class_name: "GithubBranch", dependent: :destroy
-  has_many :collaborators, class_name: "GithubCollaborator", dependent: :destroy
-  has_many :commits, class_name: "GithubCommit", dependent: :destroy
-  has_many :contributors, class_name: "GithubContributor", dependent: :destroy
-  has_many :forks, class_name: "GithubFork", dependent: :destroy
-  has_many :issues, class_name: "GithubIssue", dependent: :destroy
-  has_many :labels, class_name: "GithubLabel", dependent: :destroy
-  has_many :milestones, class_name: "GithubMilestone", dependent: :destroy
-  has_many :pull_requests, class_name: "GithubPullRequest", dependent: :destroy
-  has_many :releases, class_name: "GithubRelease", dependent: :destroy
+  # TO-DO
 
   # Validations
   validates :name, :stars, :forks, :url, :created_at, :updated_at, presence: true

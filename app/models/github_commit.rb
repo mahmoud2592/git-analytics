@@ -1,6 +1,6 @@
 class GithubCommit < ApplicationRecord
-  # associations
-  belongs_to :repository
+  # Associations
+  # TO-DO
 
   # validations
   validates :commit_id, presence: true, uniqueness: true
@@ -13,15 +13,7 @@ class GithubCommit < ApplicationRecord
   scope :by_author, ->(author) { where(author: author) }
   scope :by_repository, ->(repository) { where(repository_id: repository.id) }
 
-  # instance methods
-  def fetch_github_data
-    # fetch commit data from Github API using the commit's URL
-    # and update the commit attributes with the fetched data
-  end
-
-  # class methods
-  def self.fetch_and_create(commit_id)
-    # fetch commit data from Github API using the commit ID
-    # create a new commit record with the fetched data
+  def self.from_github_api(api_response, api_strategy = GithubApiStrategy.new(GithubApi.new))
+    # api_strategy.fetch_repository_data(api_response)
   end
 end

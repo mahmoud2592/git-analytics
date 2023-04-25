@@ -1,9 +1,6 @@
 class GithubCollaborator < ApplicationRecord
   # Associations
-  belongs_to :repository
-  has_many :github_branches, through: :repository
-  # has_many :branches, class_name: "GithubBranch", dependent: :nullify
-
+  # TO-DO
 
   # Validations
   validates :username, :repository_id, presence: true
@@ -16,13 +13,8 @@ class GithubCollaborator < ApplicationRecord
   scope :with_permission, ->(permission) { where(permission: permission) }
 
   # Methods
-  def self.from_github_data(data, repository)
-    collaborator = find_or_initialize_by(collaborator_id: data['id'])
-    collaborator.username = data['login']
-    collaborator.permission = data['permission']
-    collaborator.repository = repository
-    collaborator.save!
-    collaborator
+  def self.from_github_api(api_response, api_strategy = GithubApiStrategy.new(GithubApi.new))
+    # api_strategy.fetch_repository_data(api_response)
   end
 
   private
