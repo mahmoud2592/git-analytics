@@ -1,0 +1,2 @@
+class GithubWatcher < ApplicationRecord
+end

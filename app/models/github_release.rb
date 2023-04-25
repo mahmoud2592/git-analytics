@@ -1,0 +1,2 @@
+class GithubRelease < ApplicationRecord
+end
