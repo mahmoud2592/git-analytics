@@ -40,7 +40,7 @@ rails generate scaffold Feedback user_id:integer category:string message:text
 rails generate scaffold RepositoriesTags repository_id:integer tag_id:integer
 rails g scaffold Commits sha:string author_name:string author_email:string message:text committed_date:datetime repository_id:integer day:datetime week:datetime month:datetime
 
-
+<!--
 rails generate scaffold Repository name:string description:text language:string stars_count:integer forks_count:integer url:string
 rails generate scaffold User username:string name:string email:string location:string bio:text url:string
 rails generate scaffold Commit message:text author:string timestamp:datetime url:string repository:references
@@ -55,4 +55,38 @@ rails generate scaffold Fork forked_from_repository:references forked_to_reposit
 rails generate scaffold Watcher repository:references user:references
 rails generate scaffold Collaborator username:string permission:string repository:references
 rails generate scaffold OrganizationMember organization:references username:string url:string
-rails generate scaffold OrganizationTeam name:string description:text permission:string url:string organization:references
+rails generate scaffold OrganizationTeam name:string description:text permission:string url:string organization:references -->
+
+rails generate model GithubRepository name:string description:string language:string stars:integer forks:integer url:string
+
+rails generate model GithubUser user_id:integer username:string name:string email:string location:string bio:string url:string
+
+rails generate model GithubCommit commit_id:integer commit_message:string author:string timestamp:datetime url:string repository_id:integer
+
+rails generate model GithubIssue issue_id:integer title:string description:string author:string assignee:string status:string labels:string timestamp:datetime url:string repository_id:integer
+
+rails generate model GithubPullRequest pull_request_id:integer title:string description:string author:string assignee:string status:string labels:string timestamp:datetime url:string repository_id:integer
+
+rails generate model GithubLabel label_id:integer name:string color:string description:string url:string repository_id:integer
+
+rails generate model GithubMilestone milestone_id:integer title:string description:string due_date:datetime status:string url:string repository_id:integer
+
+rails generate model GithubContributor contributor_id:integer username:string profile_link:string number_of_contributions:integer url:string repository_id:integer
+
+rails generate model GithubBranch branch_id:integer name:string last_commit:string url:string repository_id:integer
+
+rails generate model GithubRelease release_id:integer tag_name:string target_commitish:string name:string body:string url:string repository_id:integer
+
+rails generate model GithubFork fork_id:integer forked_from_repository_id:integer forked_to_repository_id:integer
+
+rails generate model GithubWatcher watcher_id:integer repository_id:integer user_id:integer
+
+rails generate model GithubCollaborator collaborator_id:integer username:string permission:string repository_id:integer
+
+rails generate model GithubOrganizationMember member_id:integer organization_id:integer username:string url:string
+
+rails generate model GithubOrganizationTeam team_id:integer name:string description:string permission:string url:string organization_id:integer
+
+
+
+
