@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Users repositories</h1>
+
+<div id="users_repositories">
+  <% @users_repositories.each do |users_repository| %>
+    <%= render users_repository %>
+    <p>
+      <%= link_to "Show this users repository", users_repository %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New users repository", new_users_repository_path %>
